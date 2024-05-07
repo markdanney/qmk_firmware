@@ -22,15 +22,14 @@ enum layer_number { _BASE, _SYMB, _NUM, _NAV, _GAME };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {[_BASE] = LAYOUT_split_3x6_3(
                                                                   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-                                                                  C(G(KC_LSFT)), KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, C(G(KC_LSFT)),
+                                                                  C(G(KC_LSFT)), KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LALT,
                                                                   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-                                                                  KC_ESC, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, XXXXXXX, KC_TAB,
+                                                                  KC_ESC, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_QUOT, KC_TAB,
                                                                   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
                                                                   KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_BSPC, KC_RSFT,
                                                                   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                                                   KC_LGUI, TT(_SYMB), KC_ENT, KC_SPC, TT(_NUM), KC_LCTL
                                                                   //`--------------------------'  `--------------------------'
-
                                                                   ),
 
                                                               [_SYMB] = LAYOUT_split_3x6_3(
@@ -47,9 +46,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {[_BASE] = LAYOUT_s
 
                                                               [_NUM] = LAYOUT_split_3x6_3(
                                                                   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-                                                                  KC_TRNS, XXXXXXX, KC_4, KC_5, KC_6, XXXXXXX, XXXXXXX, KC_PIPE, KC_MINS, KC_SLSH, XXXXXXX, KC_TRNS,
+                                                                  KC_TRNS, XXXXXXX, KC_1, KC_2, KC_3, XXXXXXX, XXXXXXX, KC_PIPE, KC_MINS, KC_SLSH, XXXXXXX, KC_TRNS,
                                                                   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-                                                                  KC_TRNS, KC_DOT, KC_1, KC_2, KC_3, KC_0, XXXXXXX, KC_QUOT, KC_UNDS, KC_EQL, KC_BSLS, KC_TRNS,
+                                                                  KC_TRNS, KC_DOT, KC_4, KC_5, KC_6, KC_0, XXXXXXX, KC_QUOT, KC_UNDS, KC_EQL, KC_BSLS, KC_TRNS,
                                                                   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
                                                                   KC_TRNS, XXXXXXX, KC_7, KC_8, KC_9, XXXXXXX, XXXXXXX, KC_PLUS, KC_QUES, KC_EXLM, KC_DEL, KC_TRNS,
                                                                   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -59,9 +58,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {[_BASE] = LAYOUT_s
 
                                                               [_NAV] = LAYOUT_split_3x6_3(
                                                                   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-                                                                  KC_TRNS, XXXXXXX, KC_F4, KC_F5, KC_F6, KC_F10, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, TT(_GAME), KC_TRNS,
+                                                                  KC_TRNS, XXXXXXX, KC_F1, KC_F2, KC_F3, KC_F10, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, TT(_GAME), KC_TRNS,
                                                                   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-                                                                  KC_TRNS, CW_TOGG, KC_F1, KC_F2, KC_F3, KC_F11, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, XXXXXXX, KC_TRNS,
+                                                                  KC_TRNS, XXXXXXX, KC_F4, KC_F5, KC_F6, KC_F11, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, XXXXXXX, KC_TRNS,
                                                                   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
                                                                   KC_TRNS, XXXXXXX, KC_F7, KC_F8, KC_F9, KC_F12, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_DEL, KC_TRNS,
                                                                   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -81,14 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {[_BASE] = LAYOUT_s
                                                                   //`--------------------------'  `--------------------------'
                                                                   )};
 
-const uint16_t PROGMEM ctl_combo[] = {KC_W, KC_F, COMBO_END};
-
-combo_t key_combos[] = {
-    COMBO(ctl_combo, KC_LALT),
-};
-
-#ifdef OLED_ENABLE
-#    include <stdio.h>
+#include <stdio.h>
 
 /* timers */
 uint32_t anim_timer = 0;
@@ -121,7 +113,7 @@ void render_bootmagic_status(bool status) {
 }
 
 // Spaceship OLED Code Starts Here
-#    ifdef SPACE_CADET_ENABLE
+#ifdef SPACE_CADET_ENABLE
 
 unsigned int state = 0;
 
@@ -219,19 +211,19 @@ static void render_space(void) {
     state = (state + 1 + (current_wpm / 15)) % (128 * 2);
 }
 
-#    endif // SPACE_CADET_ENABLE
+#endif // SPACE_CADET_ENABLE
 // End of space oled stuff
 
 /* KEYBOARD PET START */
-#    ifdef DOG_ENABLE
+#ifdef DOG_ENABLE
 
 /* settings */
-#        define MIN_WALK_SPEED 10
-#        define MIN_RUN_SPEED 40
+#    define MIN_WALK_SPEED 10
+#    define MIN_RUN_SPEED 40
 
 /* advanced settings */
-#        define ANIM_FRAME_DURATION 200 // how long each frame lasts in ms
-#        define ANIM_SIZE 96            // number of bytes in array. If you change sprites, minimize for adequate firmware size. max is 1024
+#    define ANIM_FRAME_DURATION 200 // how long each frame lasts in ms
+#    define ANIM_SIZE 96            // number of bytes in array. If you change sprites, minimize for adequate firmware size. max is 1024
 
 /* current frame */
 uint8_t current_frame = 0;
@@ -356,7 +348,7 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
     }
 }
 
-#    endif // DOG_ENABLE
+#endif // DOG_ENABLE
 /* KEYBOARD PET END */
 
 static void render_status(void) {
@@ -398,15 +390,16 @@ bool oled_task_user(void) {
     /* KEYBOARD PET VARIABLES END */
 
     if (is_keyboard_master()) {
-#    ifdef SPACE_CADET_ENABLE
-        render_space(); // Call this to render the space stuff on the one screen
-#    endif
-    } else {
         render_status();
-#    ifdef DOG_ENABLE
+#ifdef DOG_ENABLE
         render_luna(0, 13);
-#    endif
+#endif
     }
+#ifdef SPACE_CADET_ENABLE
+    else {
+        render_space(); // Call this to render the space stuff on the one screen
+    }
+#endif
 
     return false;
 }
@@ -428,8 +421,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 showedJump = false;
             }
             break;
-        case KC_CAPS:
-            isBarking = record->event.pressed;
+        case KC_LSFT:
+        case KC_RSFT:
+            isBarking = record->event.pressed || is_caps_word_on();
             break;
 
             /* KEYBOARD PET STATUS END */
@@ -437,7 +431,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     return true;
 }
-#endif // OLED_ENABLE
 
 uint16_t keycode_config(uint16_t keycode) {
     return keycode;
@@ -445,4 +438,28 @@ uint16_t keycode_config(uint16_t keycode) {
 
 uint8_t mod_config(uint8_t mod) {
     return mod;
+}
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    if (host_keyboard_led_state().caps_lock || is_caps_word_on()) {
+        rgb_matrix_set_color(26, RGB_RED);
+        rgb_matrix_set_color(34, RGB_RED);
+    }
+    switch (get_highest_layer(layer_state)) {
+        case _NUM:
+            rgb_matrix_set_color(40, RGB_WHITE);
+            break;
+        case _SYMB:
+            rgb_matrix_set_color(13, RGB_WHITE);
+            break;
+        case _NAV:
+            rgb_matrix_set_color(13, RGB_WHITE);
+            rgb_matrix_set_color(40, RGB_WHITE);
+            break;
+        case _GAME:
+            rgb_matrix_set_color(51, RGB_MAGENTA);
+            break;
+    }
+
+    return true;
 }
