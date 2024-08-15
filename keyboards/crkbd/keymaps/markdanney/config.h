@@ -47,6 +47,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+#undef SPACE_CADET_ENABLE
+#define DOG_ENABLE
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
 #define SPLIT_WPM_ENABLE
 #define SPLIT_LAYER_STATE_ENABLE
 #define SPLIT_TRANSPORT_MIRROR
