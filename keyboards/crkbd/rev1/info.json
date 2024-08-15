@@ -20,13 +20,16 @@
     "rgb_matrix": {
         "split_count": [27, 27],
         "layout": [
+            // Left underglow
             {"x": 85, "y": 16, "flags": 2},
             {"x": 50, "y": 13, "flags": 2},
             {"x": 16, "y": 20, "flags": 2},
             {"x": 16, "y": 38, "flags": 2},
             {"x": 50, "y": 48, "flags": 2},
             {"x": 85, "y": 52, "flags": 2},
-            {"matrix": [3, 5], "x": 95, "y": 63, "flags": 1},
+
+            // Left keys
+            {"matrix": [3, 5], "x": 95, "y": 63, "flags": 1}, // [row, col], reversed for the right half
             {"matrix": [2, 5], "x": 85, "y": 39, "flags": 4},
             {"matrix": [1, 5], "x": 85, "y": 21, "flags": 4},
             {"matrix": [0, 5], "x": 85, "y": 4, "flags": 4},
@@ -47,12 +50,16 @@
             {"matrix": [0, 0], "x": 0, "y": 7, "flags": 1},
             {"matrix": [1, 0], "x": 0, "y": 24, "flags": 1},
             {"matrix": [2, 0], "x": 0, "y": 41, "flags": 1},
+
+            // Right underglow
             {"x": 139, "y": 16, "flags": 2},
             {"x": 174, "y": 13, "flags": 2},
             {"x": 208, "y": 20, "flags": 2},
             {"x": 208, "y": 38, "flags": 2},
             {"x": 174, "y": 48, "flags": 2},
             {"x": 139, "y": 52, "flags": 2},
+
+            // Right keys
             {"matrix": [7, 5], "x": 129, "y": 63, "flags": 1},
             {"matrix": [6, 5], "x": 139, "y": 39, "flags": 4},
             {"matrix": [5, 5], "x": 139, "y": 21, "flags": 4},
@@ -130,7 +137,7 @@
         },
         "LAYOUT_split_3x6_3": {
             "layout": [
-                {"matrix": [0, 0], "x": 0, "y": 0.3},
+                {"matrix": [0, 0], "x": 0, "y": 0.3}, // [row, col], reversed for the right half
                 {"matrix": [0, 1], "x": 1, "y": 0.3},
                 {"matrix": [0, 2], "x": 2, "y": 0.1},
                 {"matrix": [0, 3], "x": 3, "y": 0},
